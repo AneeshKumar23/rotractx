@@ -68,7 +68,7 @@ const WeatherPage = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(async (pos) => {
         const { latitude, longitude } = pos.coords;
-        const apiKey = "134fe11d8ff2738729f8058d76c38277";
+        const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
 
         const res = await fetch(url);

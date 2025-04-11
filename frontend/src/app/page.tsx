@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Leaf, Sun, Cloud, Sprout } from "lucide-react";
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function Home() {
   useEffect(() => {
@@ -54,21 +55,15 @@ export default function Home() {
             technology for sustainable and profitable agriculture.
           </p>
 
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-            onClick={() => {
-              const signUpButton = document.querySelector(
-                '[data-dialog-trigger="signup"]'
-              );
-              if (signUpButton) {
-                (signUpButton as HTMLButtonElement).click();
-              }
-            }}
-          >
-            Enter Farmer Portal
-            <Leaf className="ml-2 h-5 w-5" />
-          </Button>
+          <Link href="/auth?mode=signup" className="w-fit">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              Enter Farmer Portal
+              <Leaf className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
         </div>
 
         {/* Features Grid */}

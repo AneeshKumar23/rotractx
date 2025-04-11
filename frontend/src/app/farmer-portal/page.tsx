@@ -3,17 +3,18 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plane, Wheat, Trees, Sprout } from "lucide-react";
+import { FocusCards } from "@/components/ui/focus-cards";
 
 const FarmerPortal = () => {
   const features = [
-    { img: "loan.webp", text: "Loan Schemes", link: "/loan" },
+    { img: "loan.png", text: "Loan Schemes", link: "/loan" },
     { img: "calender.png", text: "Crop Planting Calendar", link: "/calendar" },
     { img: "crop.png", text: "Crop Disease ID", link: "/disease" },
-    { img: "inventory.jpg", text: "Inventory Management", link: "/inventory" },
+    { img: "inventory.png", text: "Inventory Management", link: "/inventory" },
     { img: "weather.png", text: "Live Weather", link: "/weather" },
-    { img: "vi.png", text: "Tutorial Videos/Podcast", link: "/videos" },
-    { img: "s.jpg", text: "Buy/Sell/Rent", link: "/market" },
-    { img: "re.jpg", text: "Machine Rent", link: "/machines" },
+    { img: "video.png", text: "Tutorial Videos/Podcast", link: "/videos" },
+    { img: "market.png", text: "Buy/Sell/Rent", link: "/market" },
+    { img: "rent.png", text: "Machine Rent", link: "/machines" },
   ];
 
   return (
@@ -44,29 +45,8 @@ const FarmerPortal = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-auto">
-          {features.map((item, i) => (
-            <Card
-              key={i}
-              className="group relative overflow-hidden border-2 border-green-200 hover:border-green-400 transition-all duration-300 bg-white/90 backdrop-blur-sm h-[200px]"
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-green-900/60 via-green-800/30 to-transparent z-10" />
-              <img
-                src={`/assets/${item.img}`}
-                alt={item.text}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              <CardContent className="absolute bottom-0 left-0 right-0 z-20 p-4">
-                <Button
-                  variant="secondary"
-                  className="w-full backdrop-blur-sm bg-emerald-50/80 hover:bg-emerald-100/80 text-green-800 transition-colors"
-                  onClick={() => (window.location.href = item.link)}
-                >
-                  {item.text}
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="mb-auto">
+          <FocusCards cards={features} />
         </div>
       </div>
 

@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { authService } from "@/services/auth.service";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type LoginFormInputs = {
   email: string;
@@ -16,15 +19,20 @@ export default function LoginPage() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormInputs>();
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-  const onSubmit = async (data: LoginFormInputs) => {
+  const onSubmit = handleSubmit(async (data) => {
     try {
-      console.log("Logging in:", data);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-    } catch (error) {
-      console.error(error);
+      setError("");
+      const response = await authService.login(data);
+      // Store user data in localStorage or state management
+      localStorage.setItem("user", JSON.stringify(response.user));
+      router.push("/dashboard");
+    } catch (error: any) {
+      setError(error.response?.data?.message || "Invalid credentials");
     }
-  };
+  });
 
   return (
     <div className="w-full max-w-md p-6 bg-black/50 backdrop-blur-sm border border-white/10 rounded-lg shadow-xl">
@@ -35,7 +43,7 @@ export default function LoginPage() {
         <p className="text-white/70">Sign in to continue to FarmLife</p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mt-8">
+      <form onSubmit={onSubmit} className="space-y-6 mt-8">
         <div className="space-y-2">
           <label className="text-sm text-white/80">Email</label>
           <input
@@ -61,6 +69,8 @@ export default function LoginPage() {
             <p className="text-red-400 text-sm">{errors.password.message}</p>
           )}
         </div>
+
+        {error && <p className="text-red-400 text-sm">{error}</p>}
 
         <Button
           type="submit"

@@ -3,10 +3,25 @@
 import { Navbar } from "@/components/ui/navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import Link from "next/link";
-import { Sprout, Leaf, Sun, Cloud, TreePine, Plane } from "lucide-react";
+import { Leaf, Sun, Cloud, Sprout } from "lucide-react";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    // Ensure this logic only runs on the client
+    const button = document.querySelector('[data-dialog-trigger="signup"]');
+    if (button) {
+      button.addEventListener("click", () => {
+        console.log("Sign Up button triggered from Home page");
+      });
+    }
+    return () => {
+      if (button) {
+        button.removeEventListener("click", () => {});
+      }
+    };
+  }, []);
+
   return (
     <main className="min-h-screen flex flex-col relative">
       {/* Background Image */}
@@ -39,15 +54,21 @@ export default function Home() {
             technology for sustainable and profitable agriculture.
           </p>
 
-          <Link href="/farmer-portal" className="w-fit">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Enter Farmer Portal
-              <Leaf className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
+          <Button
+            size="lg"
+            className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+            onClick={() => {
+              const signUpButton = document.querySelector(
+                '[data-dialog-trigger="signup"]'
+              );
+              if (signUpButton) {
+                (signUpButton as HTMLButtonElement).click();
+              }
+            }}
+          >
+            Enter Farmer Portal
+            <Leaf className="ml-2 h-5 w-5" />
+          </Button>
         </div>
 
         {/* Features Grid */}

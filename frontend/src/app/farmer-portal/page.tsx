@@ -2,7 +2,6 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plane, Wheat, Trees, Sprout } from "lucide-react";
 import { FocusCards } from "@/components/ui/focus-cards";
 import { Navbar } from "@/components/ui/navbar";
 

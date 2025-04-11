@@ -1,5 +1,6 @@
 "use client";
 
+import { Navbar } from "@/components/ui/navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
@@ -7,28 +8,33 @@ import { Sprout, Leaf, Sun, Cloud, TreePine, Plane } from "lucide-react";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col bg-gradient-to-br from-green-100 via-emerald-100 to-green-50">
-      {/* Decorative Background */}
-      <div className="fixed inset-0 -z-10 opacity-40">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-300/40 rounded-full blur-3xl animate-[pulse_4s_ease-in-out_infinite]" />
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-emerald-300/40 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_infinite]" />
-        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-green-400/40 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_infinite]" />
+    <main className="min-h-screen flex flex-col relative">
+      {/* Background Image */}
+      <div
+        className="fixed inset-0 -z-10"
+        style={{
+          backgroundImage: "url('/assets/bg.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
       </div>
 
-      <div className="flex-1 container mx-auto flex flex-col items-center justify-center gap-16 px-4 py-16">
+      <Navbar />
+
+      <div className="flex-1 container mx-auto flex flex-col items-center justify-center gap-16 px-4 py-16 relative z-10">
         {/* Hero Section */}
         <div className="flex flex-col items-center text-center max-w-3xl gap-8">
-          <div className="flex items-center justify-center gap-3 p-2 bg-green-50/50 rounded-full backdrop-blur-sm">
-            <Plane className="w-6 h-6 text-green-600" />
-            <TreePine className="w-5 h-5 text-green-500" />
-            <Sprout className="w-6 h-6 text-green-600" />
-          </div>
-
-          <h1 className="text-5xl sm:text-6xl font-bold tracking-tight bg-gradient-to-r from-green-600 via-emerald-600 to-green-600 bg-clip-text text-transparent">
-            Welcome to FarmLife
+          <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-white">
+            Welcome to{" "}
+            <span className="bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent">
+              FarmLife
+            </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl">
+          <p className="text-lg sm:text-xl text-white/80 max-w-2xl">
             Your complete farming companion - empowering farmers with smart
             technology for sustainable and profitable agriculture.
           </p>
@@ -68,29 +74,25 @@ export default function Home() {
           ].map((feature, i) => (
             <Card
               key={i}
-              className="group overflow-hidden border border-green-100 hover:border-green-200 hover:shadow-lg transition-all duration-300 backdrop-blur-sm bg-white/50"
+              className="group overflow-hidden border-white/20 hover:border-white/30 hover:shadow-lg transition-all duration-300 backdrop-blur-md bg-white/10"
             >
               <CardContent className="p-8 flex flex-col items-center text-center gap-4">
                 <div className="transform transition-transform duration-500 group-hover:scale-110">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-green-800">
+                <h3 className="text-xl font-semibold text-white">
                   {feature.title}
                 </h3>
-                <p className="text-muted-foreground">{feature.description}</p>
+                <p className="text-white/80">{feature.description}</p>
               </CardContent>
             </Card>
           ))}
         </div>
       </div>
 
-      <footer className="w-full border-t border-green-100">
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Sprout className="h-5 w-5 text-green-600" />
-            <span className="text-sm font-medium text-green-700">FarmLife</span>
-          </div>
-          <span className="text-sm text-green-700">
+      <footer className="w-full border-t border-white/10 bg-black/30 backdrop-blur-sm relative z-10">
+        <div className="container mx-auto px-6 py-4 text-center">
+          <span className="text-sm text-white/90">
             © 2025 FarmLife. All rights reserved.
           </span>
         </div>

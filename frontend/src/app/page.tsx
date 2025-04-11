@@ -55,7 +55,7 @@ export default function Home() {
             technology for sustainable and profitable agriculture.
           </p>
 
-          <Link href="/auth?mode=signup" className="w-fit">
+          <Link href="/auth/signup" className="w-fit">
             <Button
               size="lg"
               className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"

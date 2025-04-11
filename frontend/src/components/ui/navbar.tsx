@@ -15,15 +15,18 @@ export function Navbar() {
           </Link>
 
           <div className="flex items-center gap-4">
-            <Link href="/auth?mode=login">
+            <Link href="/auth/login">
               <Button
                 variant="ghost"
-                className="text-white hover:text-white/90"
+                className="text-white/90 hover:text-emerald-300 relative group font-medium"
               >
-                Login
+                <span className="relative">
+                  Login
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-emerald-300 transform scale-x-0 transition-transform group-hover:scale-x-100"></span>
+                </span>
               </Button>
             </Link>
-            <Link href="/auth?mode=signup">
+            <Link href="/auth/signup">
               <Button
                 variant="ghost"
                 className="bg-gradient-to-r from-emerald-400 to-green-400 hover:from-emerald-500 hover:to-green-500 text-white px-4 py-2 rounded-full"

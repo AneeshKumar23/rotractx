@@ -1,11 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-type LoginInputs = {
+type LoginFormInputs = {
   email: string;
   password: string;
 };
@@ -15,9 +15,9 @@ export default function LoginPage() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<LoginInputs>();
+  } = useForm<LoginFormInputs>();
 
-  const onSubmit = async (data: LoginInputs) => {
+  const onSubmit = async (data: LoginFormInputs) => {
     try {
       console.log("Logging in:", data);
       await new Promise((resolve) => setTimeout(resolve, 1000));
